@@ -33,13 +33,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "absoluteInclination":
+            MessageLookupByLibrary.simpleMessage("Absolute Inclination"),
         "gaugeStyle": m0,
         "gaugeStyleTitle": MessageLookupByLibrary.simpleMessage("Gauge Style"),
         "lockOrientation":
             MessageLookupByLibrary.simpleMessage("Lock Orientation"),
         "pitch": MessageLookupByLibrary.simpleMessage("Pitch"),
+        "relativeInclination":
+            MessageLookupByLibrary.simpleMessage("Relative Inclination"),
         "roll": MessageLookupByLibrary.simpleMessage("Roll"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "themeMode": m1
       };
 }

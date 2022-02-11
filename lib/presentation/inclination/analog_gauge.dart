@@ -5,17 +5,16 @@ import 'package:rive/rive.dart';
 
 import '../../application/application.dart';
 import '../../application/inclination/gauge_palette.dart';
+import '../common/app_settings.dart';
 
 class AnalogGauge extends StatefulWidget {
   final String artboardName;
-  final GaugePalette palette;
   final Stream<double> stream;
 
   const AnalogGauge({
     Key? key,
     required this.artboardName,
     required this.stream,
-    this.palette = GaugePalette.light,
   }) : super(key: key);
 
   @override
@@ -23,6 +22,10 @@ class AnalogGauge extends StatefulWidget {
 }
 
 class _AnalogGaugeState extends State<AnalogGauge> {
+  final painter = AnalogGaugePainter()
+    ..themeData = AnalogGaugeTheme.standard
+    ..themeMode = ThemeMode.light;
+
   Artboard? _artboard;
   SMIInput<double>? _degrees;
   StreamSubscription? _subscription;
@@ -31,6 +34,22 @@ class _AnalogGaugeState extends State<AnalogGauge> {
   void dispose() {
     super.dispose();
     _subscription?.cancel();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_artboard == null) {
+      return;
+    }
+
+    final settings = AppSettings.of(context);
+    painter.themeMode = settings.themeMode;
+
+    if (painter.shouldRepaint) {
+      painter.paint(_artboard!);
+    }
   }
 
   @override
@@ -51,7 +70,6 @@ class _AnalogGaugeState extends State<AnalogGauge> {
     if (controller != null) {
       artboard.addController(controller);
       _degrees = controller.findInput('deg');
-      widget.palette.paint(artboard);
     }
 
     setState(() => _artboard = artboard);
@@ -66,8 +84,8 @@ class _AnalogGaugeState extends State<AnalogGauge> {
     final mq = MediaQuery.of(context);
 
     final width = mq.orientation == Orientation.landscape
-        ? mq.size.height - 75
-        : mq.size.width - 75;
+        ? mq.size.height - 40
+        : mq.size.width - 55;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

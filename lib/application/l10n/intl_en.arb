@@ -5,5 +5,8 @@
     "pitch": "Pitch",
     "roll": "Roll",
     "gaugeStyle": "{gaugeStyle, select, analog {Analog} digital {Digital}}",
-    "themeMode": "{themeMode, select, dark {Dark} light {Light} system {System}}"
+    "themeMode": "{themeMode, select, dark {Dark} light {Light} system {System}}",
+    "relativeInclination": "Relative Inclination",
+    "absoluteInclination": "Absolute Inclination",
+    "theme": "Theme"
 }

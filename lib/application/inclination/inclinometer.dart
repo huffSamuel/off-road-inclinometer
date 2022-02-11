@@ -8,18 +8,6 @@ import '../application.dart';
 
 const _radToDeg = 57.3;
 
-class _Zero {
-  final double roll;
-  final double pitch;
-
-  _Zero(this.roll, this.pitch);
-
-  @override
-  String toString() {
-    return 'Zero($roll, $pitch)';
-  }
-}
-
 class Inclinometer {
   final _communicator = NativeDeviceOrientationCommunicator();
   final _sensorManager = SensorManager();

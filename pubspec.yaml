@@ -21,6 +21,7 @@ dependencies:
   rxdart: ^0.27.3
   flutter_sensors: ^1.0.1
   native_device_orientation: ^1.0.0
+  shared_preferences: ^2.0.0-nullsafety
 
 dev_dependencies:
   flutter_test:

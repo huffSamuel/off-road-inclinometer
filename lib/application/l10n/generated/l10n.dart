@@ -128,6 +128,36 @@ class S {
       args: [themeMode],
     );
   }
+
+  /// `Relative Inclination`
+  String get relativeInclination {
+    return Intl.message(
+      'Relative Inclination',
+      name: 'relativeInclination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Absolute Inclination`
+  String get absoluteInclination {
+    return Intl.message(
+      'Absolute Inclination',
+      name: 'absoluteInclination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message(
+      'Theme',
+      name: 'theme',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

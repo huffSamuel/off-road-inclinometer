@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rive_test/application/l10n/generated/l10n.dart';
-import 'package:rive_test/presentation/common/app_host.dart';
+
+import '../../../application/l10n/generated/l10n.dart';
+import '../../common/app_settings.dart';
 
 class ThemeModeDialog extends StatelessWidget {
   const ThemeModeDialog({Key? key}) : super(key: key);
@@ -10,13 +11,12 @@ class ThemeModeDialog extends StatelessWidget {
       return;
     }
 
-    AppSettings.update(context, AppSettings.of(context).copyWith(themeMode: theme));
-
+    AppSettings.update(
+        context, AppSettings.of(context).copyWith(themeMode: theme));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SimpleDialog(
       children: List.from(
         ThemeMode.values.map(

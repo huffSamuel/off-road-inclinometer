@@ -1,16 +1,14 @@
-# rive_test
+# Off-Road Inclinometer
+A Flutter app to monitor pitch and roll when off roading. Let her eat dirt and have fun.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+1. Set up [flutter](flutter.dev).
+2. Clone this repository
+  ```shell
+  git clone https://github.com/huffSamuel/off-road-inclinometer.git
+  ```
+3. Build the app
+  ```shell
+  flutter build
+  ```
+4. Install it on your phone and go get some dirt

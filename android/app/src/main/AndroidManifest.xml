@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rive_test">
+    package="com.samueljhuff.offroadinclinometer">
    <application
-        android:label="rive_test"
+        android:label="offroadinclinometer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

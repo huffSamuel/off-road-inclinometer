@@ -1,4 +1,4 @@
-package com.example.rive_test
+package com.samueljhuff.offroadinclinometer
 
 import io.flutter.embedding.android.FlutterActivity
 

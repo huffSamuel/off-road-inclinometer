@@ -158,6 +158,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Source Code`
+  String get sourceCode {
+    return Intl.message(
+      'Source Code',
+      name: 'sourceCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

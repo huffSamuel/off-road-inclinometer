@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Relative Inclination"),
         "roll": MessageLookupByLibrary.simpleMessage("Roll"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Source Code"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "themeMode": m1
       };

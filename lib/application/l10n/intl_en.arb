@@ -8,5 +8,6 @@
     "themeMode": "{themeMode, select, dark {Dark} light {Light} system {System}}",
     "relativeInclination": "Relative Inclination",
     "absoluteInclination": "Absolute Inclination",
-    "theme": "Theme"
+    "theme": "Theme",
+    "sourceCode": "Source Code"
 }

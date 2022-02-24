@@ -22,6 +22,7 @@ dependencies:
   flutter_sensors: ^1.0.1
   native_device_orientation: ^1.0.0
   shared_preferences: ^2.0.0-nullsafety
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_test:

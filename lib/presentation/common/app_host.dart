@@ -7,6 +7,7 @@ import '../../application/app_settings.dart';
 import '../../application/application.dart';
 import '../../application/inclination/gauge_palette.dart';
 import 'app_settings.dart';
+import 'splash.dart';
 
 class AppHost extends StatefulWidget {
   const AppHost({Key? key}) : super(key: key);
@@ -71,7 +72,11 @@ class _AppHostState extends State<AppHost> {
   @override
   Widget build(BuildContext context) {
     if (!_loaded) {
-      return const MaterialApp(home: Scaffold(body: Placeholder()));
+      return const MaterialApp(
+        home: Scaffold(
+          body: Splash()
+        ),
+      );
     }
 
     return AppSettings(

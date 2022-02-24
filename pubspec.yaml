@@ -35,6 +35,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/gauge.riv
+    - assets/icon/icon.png
 
 flutter_intl:
   enabled: true

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
@@ -81,21 +82,12 @@ class _AnalogGaugeState extends State<AnalogGauge> {
       return const SizedBox();
     }
 
-    final mq = MediaQuery.of(context);
-
-    final width = mq.orientation == Orientation.landscape
-        ? mq.size.height - 40
-        : mq.size.width - 55;
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: width,
-        height: width,
-        child: Rive(
-          artboard: _artboard!,
-          fit: BoxFit.fitWidth,
-        ),
+      child: Rive(
+        artboard: _artboard!,
+        useArtboardSize: false,
+        fit: BoxFit.contain,
       ),
     );
   }

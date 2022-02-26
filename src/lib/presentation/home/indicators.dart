@@ -12,11 +12,17 @@ class Indicators extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = [
-      PitchGauge(
-        style: AppSettings.of(context).style,
+      Flexible(
+        flex: 1,
+        child: PitchGauge(
+          style: AppSettings.of(context).style,
+        ),
       ),
-      RollGauge(
-        style: AppSettings.of(context).style,
+      Flexible(
+        flex: 1,
+        child: RollGauge(
+          style: AppSettings.of(context).style,
+        ),
       ),
     ];
 
@@ -26,14 +32,13 @@ class Indicators extends StatelessWidget {
       if (isLandscape(orientation)) {
         return Row(
           children: children,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
         );
       }
 
       return Column(
         children: children,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
       );
     });

@@ -11,16 +11,15 @@ class IndicatorPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          height: 365,
-          child: RollGauge(
-            style: style,
-          ),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SizedBox(
+        width: 200,
+        height: 200,
+        child: RollGauge(
+          style: style,
         ),
-      ],
+      ),
     );
   }
 }

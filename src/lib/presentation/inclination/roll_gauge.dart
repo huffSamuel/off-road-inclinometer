@@ -15,19 +15,16 @@ class RollGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IndexedStack(
-      alignment: Alignment.center,
-      index: style == GaugeStyle.digital ? 1 : 0,
-      children: [
-        AnalogGauge(
-          artboardName: 'roll_gauge',
-          stream: Application.inclinometer.roll.stream,
-        ),
-        DigitalGauge(
-          title: const Text('Roll'),
-          stream: Application.inclinometer.roll.stream,
-        )
-      ],
+    if (style == GaugeStyle.digital) {
+      return DigitalGauge(
+        title: const Text('Roll'),
+        stream: Application.inclinometer.roll.stream,
+      );
+    }
+
+    return AnalogGauge(
+      artboardName: 'roll_gauge',
+      stream: Application.inclinometer.roll.stream,
     );
   }
 }

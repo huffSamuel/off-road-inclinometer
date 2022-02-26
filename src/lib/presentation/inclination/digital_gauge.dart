@@ -40,28 +40,30 @@ class _DigitalGaugeState extends State<DigitalGauge> {
     final mq = MediaQuery.of(context);
 
     final width = mq.orientation == Orientation.landscape
-        ? mq.size.height - 75
-        : mq.size.width - 75;
-
-    return Column(
-      children: [
-        SizedBox(
-          width: width,
-          height: width,
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: Text(
-              _degrees.toStringAsFixed(0),
+        ? (mq.size.width / 2)
+        : (mq.size.height / 2) - 14;
+    
+    return SizedBox(
+      height: width,
+      width: width,
+      child: Column(
+        children: [
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                _degrees.toStringAsFixed(0),
+              ),
             ),
           ),
-        ),
-        DefaultTextStyle.merge(
-          style: const TextStyle(
-            fontSize: 24.0,
-          ),
-          child: widget.title,
-        )
-      ],
+          DefaultTextStyle.merge(
+            style: const TextStyle(
+              fontSize: 24.0,
+            ),
+            child: widget.title,
+          )
+        ],
+      ),
     );
   }
 }

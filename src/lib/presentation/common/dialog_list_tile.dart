@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class DialogListTile extends StatelessWidget {
   final Widget title;
   final Widget currentValue;
-  final VoidCallback onTap;
+  final Widget Function(BuildContext) builder;
 
   const DialogListTile({
     Key? key,
     required this.title,
     required this.currentValue,
-    required this.onTap,
+    required this.builder,
   }) : super(key: key);
 
   @override
@@ -17,7 +17,9 @@ class DialogListTile extends StatelessWidget {
     return ListTile(
       title: title,
       trailing: currentValue,
-      onTap: onTap,
+      onTap: () {
+        showDialog(context: context, builder: builder);
+      },
     );
   }
 }

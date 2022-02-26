@@ -14,12 +14,7 @@ class GaugeStyleListTile extends StatelessWidget {
       title: Text(S.of(context).theme),
       currentValue:
           Text(S.of(context).themeMode(AppSettings.of(context).themeMode)),
-      onTap: () => {
-        showDialog(
-          context: context,
-          builder: (context) => const ThemeModeDialog(),
-        )
-      },
+      builder: (context) => const ThemeModeDialog(),
     );
   }
 }

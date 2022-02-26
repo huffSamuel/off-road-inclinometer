@@ -33,7 +33,7 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       home: const SafeArea(child: HomePage()),
       onGenerateRoute: Application.router.generator,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false
     );
   }
 }

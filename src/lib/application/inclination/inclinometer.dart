@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 
-import '../application.dart';
+import '../../domain/vector.dart';
 
 const _radToDeg = 57.3;
 

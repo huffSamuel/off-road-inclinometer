@@ -6,6 +6,7 @@ import '../../app.dart';
 import '../../application/app_settings.dart';
 import '../../application/application.dart';
 import '../../application/inclination/gauge_palette.dart';
+import '../../application/ioc.dart';
 import 'app_settings.dart';
 import 'splash.dart';
 
@@ -29,11 +30,12 @@ class _AppHostState extends State<AppHost> {
       SharedPreferences.getInstance(),
       rootBundle.load('assets/gauge.riv'),
     ]).then((val) {
+      configureDependencies();
+
       final preferences = val[0] as SharedPreferences;
       final gaugeAsset = val[1] as ByteData;
 
       Application.gauge = gaugeAsset;
-      Application.inclinometer.init();
       SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
       final themeModeName = preferences.getString('themeMode');
@@ -73,9 +75,7 @@ class _AppHostState extends State<AppHost> {
   Widget build(BuildContext context) {
     if (!_loaded) {
       return const MaterialApp(
-        home: Scaffold(
-          body: Splash()
-        ),
+        home: Scaffold(body: Splash()),
       );
     }
 

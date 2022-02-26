@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../application/application.dart';
+import '../../application/inclination/inclinometer.dart';
+import '../../application/ioc.dart';
 import '../../application/l10n/generated/l10n.dart';
 
 class SetZeroButton extends StatefulWidget {
@@ -11,6 +12,8 @@ class SetZeroButton extends StatefulWidget {
 }
 
 class _SetZeroButtonState extends State<SetZeroButton> {
+  final Inclinometer _inclinometer = ioc();
+
   bool _zeroSet = false;
 
   void _set() {
@@ -32,12 +35,12 @@ class _SetZeroButtonState extends State<SetZeroButton> {
     if (_zeroSet) {
       setState(() {
         _zeroSet = false;
-        Application.inclinometer.clearZero();
+        _inclinometer.clearZero();
       });
     } else {
       setState(() {
         _zeroSet = true;
-        Application.inclinometer.setZero();
+        _inclinometer.setZero();
       });
     }
   }

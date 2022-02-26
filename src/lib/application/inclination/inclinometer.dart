@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter_sensors/flutter_sensors.dart';
+import 'package:injectable/injectable.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 
 import '../../domain/vector.dart';
 
 const _radToDeg = 57.3;
 
+@Singleton()
 class Inclinometer {
   final _communicator = NativeDeviceOrientationCommunicator();
   final _sensorManager = SensorManager();
@@ -21,6 +23,20 @@ class Inclinometer {
 
   StreamController<double> pitch = StreamController.broadcast();
   StreamController<double> roll = StreamController.broadcast();
+
+  Inclinometer() {
+    _sensorManager
+        .sensorUpdates(
+            sensorId: Sensors.ACCELEROMETER,
+            interval: Sensors.SENSOR_DELAY_GAME)
+        .then(
+      (stream) {
+        stream.listen((event) => _updateSensor(event.data));
+      },
+    );
+
+    _communicator.onOrientationChanged().listen(_updateOrientation);
+  }
 
   void _updateSensor(List<double> data) {
     _lastSensor = Vector3(data[0], data[1], data[2]);
@@ -56,20 +72,6 @@ class Inclinometer {
 
   clearZero() {
     zero = false;
-  }
-
-  init() {
-    _sensorManager
-        .sensorUpdates(
-            sensorId: Sensors.ACCELEROMETER,
-            interval: Sensors.SENSOR_DELAY_GAME)
-        .then(
-      (stream) {
-        stream.listen((event) => _updateSensor(event.data));
-      },
-    );
-
-    _communicator.onOrientationChanged().listen(_updateOrientation);
   }
 
   double _calculatePitch(Vector3 v, NativeDeviceOrientation orientation) {

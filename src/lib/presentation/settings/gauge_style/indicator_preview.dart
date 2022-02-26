@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../application/inclination/gauge_palette.dart';
+import '../../../application/ioc.dart';
 import '../../inclination/roll_gauge.dart';
 
 class IndicatorPreview extends StatelessWidget {
@@ -18,6 +19,7 @@ class IndicatorPreview extends StatelessWidget {
         height: 200,
         child: RollGauge(
           style: style,
+          inclinometer: ioc(),
         ),
       ),
     );

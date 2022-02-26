@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:off_road_inclinometer/application/inclination/inclinometer.dart';
 
 import '../../application/application.dart';
 import '../../application/inclination/gauge_palette.dart';
@@ -7,10 +8,12 @@ import 'digital_gauge.dart';
 
 class RollGauge extends StatelessWidget {
   final GaugeStyle? style;
+  final Inclinometer inclinometer;
 
   const RollGauge({
     Key? key,
     required this.style,
+    required this.inclinometer,
   }) : super(key: key);
 
   @override
@@ -18,13 +21,13 @@ class RollGauge extends StatelessWidget {
     if (style == GaugeStyle.digital) {
       return DigitalGauge(
         title: const Text('Roll'),
-        stream: Application.inclinometer.roll.stream,
+        stream: inclinometer.roll.stream,
       );
     }
 
     return AnalogGauge(
       artboardName: 'roll_gauge',
-      stream: Application.inclinometer.roll.stream,
+      stream: inclinometer.roll.stream,
     );
   }
 }

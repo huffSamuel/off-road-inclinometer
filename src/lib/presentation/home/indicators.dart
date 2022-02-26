@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 
+import '../../application/ioc.dart';
 import '../common/app_settings.dart';
 import '../common/util.dart';
 import '../inclination/pitch_gauge.dart';
@@ -16,12 +17,14 @@ class Indicators extends StatelessWidget {
         flex: 1,
         child: PitchGauge(
           style: AppSettings.of(context).style,
+          inclinometer: ioc(),
         ),
       ),
       Flexible(
         flex: 1,
         child: RollGauge(
           style: AppSettings.of(context).style,
+          inclinometer: ioc(),
         ),
       ),
     ];

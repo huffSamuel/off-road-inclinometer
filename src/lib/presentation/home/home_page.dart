@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../application/ioc.dart';
 import 'full_screen_button.dart';
 import 'indicators.dart';
 import 'set_zero_button.dart';
@@ -12,19 +13,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: const [
-          Indicators(),
-          Align(
+        children: [
+          const Indicators(),
+          const Align(
             alignment: Alignment.topRight,
             child: FullScreenButton(),
           ),
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: SettingsButton(),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: SetZeroButton(),
+            child: SetZeroButton(
+              inclinometer: ioc(),
+            ),
           ),
         ],
       ),

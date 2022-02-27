@@ -5,15 +5,15 @@ import '../../application/ioc.dart';
 import '../../application/l10n/generated/l10n.dart';
 
 class SetZeroButton extends StatefulWidget {
-  const SetZeroButton({Key? key}) : super(key: key);
+  final Inclinometer inclinometer;
+
+  const SetZeroButton({Key? key, required this.inclinometer}) : super(key: key);
 
   @override
   State<SetZeroButton> createState() => _SetZeroButtonState();
 }
 
 class _SetZeroButtonState extends State<SetZeroButton> {
-  final Inclinometer _inclinometer = ioc();
-
   bool _zeroSet = false;
 
   void _set() {
@@ -35,12 +35,12 @@ class _SetZeroButtonState extends State<SetZeroButton> {
     if (_zeroSet) {
       setState(() {
         _zeroSet = false;
-        _inclinometer.clearZero();
+        widget.inclinometer.clearZero();
       });
     } else {
       setState(() {
         _zeroSet = true;
-        _inclinometer.setZero();
+        widget.inclinometer.setZero();
       });
     }
   }

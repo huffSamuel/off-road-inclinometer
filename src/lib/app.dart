@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'application/application.dart';
 import 'application/l10n/generated/l10n.dart';
+import 'application/routes/route_handlers.dart';
 import 'application/routes/routes.dart';
 import 'presentation/common/app_settings.dart';
-import 'presentation/home/home_page.dart';
 
 List<LocalizationsDelegate> localizationsDelegates = [
   S.delegate,
@@ -31,9 +31,9 @@ class App extends StatelessWidget {
       title: Application.title,
       localizationsDelegates: localizationsDelegates,
       supportedLocales: S.delegate.supportedLocales,
-      home: const SafeArea(child: HomePage()),
+      home: homeHandler.handlerFunc(context, {}),
       onGenerateRoute: Application.router.generator,
-      debugShowCheckedModeBanner: false
+      debugShowCheckedModeBanner: false,
     );
   }
 }

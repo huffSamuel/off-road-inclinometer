@@ -9,26 +9,22 @@ import 'package:off_road_inclinometer/presentation/home/set_zero_button.dart';
 import '../../util.dart';
 import 'set_zero_button_test.mocks.dart';
 
-@GenerateMocks([Inclinometer, S])
+@GenerateMocks([Inclinometer])
 void main() {
   group('SetZeroButton', () {
     late Inclinometer mockInclinometer;
-    late MockS mockS;
 
     _makeWidget() {
       return wrapTestWidget(
-        SetZeroButton(
+        child: SetZeroButton(
           inclinometer: mockInclinometer,
         ),
+        delegate: S.delegate
       );
     }
 
     setUp(() {
       mockInclinometer = MockInclinometer();
-      mockS = MockS();
-
-      when(mockS.absoluteInclination).thenReturn('absolute');
-      when(mockS.relativeInclination).thenReturn('relative');
     });
 
     testWidgets(

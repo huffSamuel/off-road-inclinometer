@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:off_road_inclinometer/application/inclination/inclinometer.dart';
 
-import '../../application/application.dart';
 import '../../application/inclination/gauge_palette.dart';
+import '../../application/inclination/inclinometer.dart';
 import 'analog_gauge.dart';
 import 'digital_gauge.dart';
 

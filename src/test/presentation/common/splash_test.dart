@@ -7,7 +7,7 @@ import '../../util.dart';
 void main() {
   group('Splash', () {
     testWidgets('Should have an asset image', (tester) async {
-      await tester.pumpWidget(wrapTestWidget(const Splash()));
+      await tester.pumpWidget(wrapTestWidget(child: const Splash()));
 
       final imageFinder = find.byType(Image);
 

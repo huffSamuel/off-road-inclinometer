@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../application/inclination/inclinometer.dart';
-import '../../application/ioc.dart';
 import '../../application/l10n/generated/l10n.dart';
 
 class SetZeroButton extends StatefulWidget {

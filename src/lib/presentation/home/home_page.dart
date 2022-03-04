@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:off_road_inclinometer/application/inclination/inclinometer.dart';
 
-import '../../application/ioc.dart';
 import 'full_screen_button.dart';
 import 'indicators.dart';
 import 'set_zero_button.dart';
 import 'settings_button.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Inclinometer inclinometer;
+
+  const HomePage({Key? key, required this.inclinometer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class HomePage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: SetZeroButton(
-              inclinometer: ioc(),
+              inclinometer: inclinometer,
             ),
           ),
         ],

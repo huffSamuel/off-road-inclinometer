@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Testing stub files
+- Smooth gyroscope input
 
 ### Changed
 - Moved source code to ./src/

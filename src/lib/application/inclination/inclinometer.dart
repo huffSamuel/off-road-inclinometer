@@ -4,7 +4,9 @@ import 'dart:math' as math;
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:injectable/injectable.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
+import 'package:off_road_inclinometer/application/application.dart';
 
+import '../../domain/buffer.dart';
 import '../../domain/vector.dart';
 
 const _radToDeg = 57.3;
@@ -13,11 +15,13 @@ const _radToDeg = 57.3;
 class Inclinometer {
   final _communicator = NativeDeviceOrientationCommunicator();
   final _sensorManager = SensorManager();
+  final _pitchBuffer = Buffer(Application.bufferSize);
+  final _rollBuffer = Buffer(Application.bufferSize);
 
-  bool zero = false;
+  bool _relativeInclination = false;
 
-  double? _lastPitch;
-  double? _lastRoll;
+  double? _relativePitchZero;
+  double? _relativeRollZero;
   Vector3? _lastSensor;
   NativeDeviceOrientation? _lastOrientation;
 
@@ -56,22 +60,25 @@ class Inclinometer {
     final nextPitch = _calculatePitch(_lastSensor!, _lastOrientation!);
     final nextRoll = _calculateRoll(_lastSensor!, _lastOrientation!);
 
-    if (zero && _lastPitch == null) {
-      _lastPitch = nextPitch;
-      _lastRoll = nextRoll;
+    if (_relativeInclination && _relativePitchZero == null) {
+      _relativePitchZero = nextPitch;
+      _relativeRollZero = nextRoll;
     }
 
-    pitch.add(nextPitch - (zero ? _lastPitch! : 0));
-    roll.add(nextRoll - (zero ? _lastRoll! : 0));
+    _pitchBuffer.add(nextPitch - (_relativeInclination ? _relativePitchZero! : 0));
+    _rollBuffer.add(nextRoll - (_relativeInclination ? _relativeRollZero! : 0));
+
+    pitch.add(_pitchBuffer.average);
+    roll.add(_rollBuffer.average);
   }
 
   setZero() {
-    zero = true;
-    _lastPitch = null;
+    _relativeInclination = true;
+    _relativePitchZero = null;
   }
 
   clearZero() {
-    zero = false;
+    _relativeInclination = false;
   }
 
   double _calculatePitch(Vector3 v, NativeDeviceOrientation orientation) {

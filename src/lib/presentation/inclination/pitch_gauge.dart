@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../application/inclination/gauge_palette.dart';
+import '../../application/gauge/gauge_style.dart';
 import '../../application/inclination/inclinometer.dart';
 import 'analog_gauge.dart';
 import 'digital_gauge.dart';

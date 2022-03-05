@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../application/inclination/gauge_palette.dart';
+import '../../../application/gauge/gauge_style.dart';
 import '../../../application/ioc.dart';
 import '../../inclination/roll_gauge.dart';
 
@@ -12,6 +12,7 @@ class IndicatorPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Align(
       alignment: Alignment.topCenter,
       child: SizedBox(

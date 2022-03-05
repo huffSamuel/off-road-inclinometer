@@ -1,21 +1,23 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import '../../application/application.dart';
-import '../../application/inclination/gauge_palette.dart';
+import '../../application/gauge/analog_gauge_painter.dart';
+import '../../application/gauge/analog_gauge_theme.dart';
 import '../common/app_settings.dart';
 
 class AnalogGauge extends StatefulWidget {
   final String artboardName;
   final Stream<double> stream;
+  final AnalogGaugeTheme? theme;
 
   const AnalogGauge({
     Key? key,
     required this.artboardName,
     required this.stream,
+    this.theme,
   }) : super(key: key);
 
   @override
@@ -23,9 +25,7 @@ class AnalogGauge extends StatefulWidget {
 }
 
 class _AnalogGaugeState extends State<AnalogGauge> {
-  final painter = AnalogGaugePainter()
-    ..themeData = AnalogGaugeTheme.standard
-    ..themeMode = ThemeMode.light;
+  final painter = AnalogGaugePainter();
 
   Artboard? _artboard;
   SMIInput<double>? _degrees;
@@ -38,15 +38,29 @@ class _AnalogGaugeState extends State<AnalogGauge> {
   }
 
   @override
+  void didUpdateWidget(covariant AnalogGauge oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _updatePainter();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _updatePainter();
+   
+  }
 
-    if (_artboard == null) {
+  void _updatePainter() {
+     if (_artboard == null) {
       return;
     }
 
     final settings = AppSettings.of(context);
-    painter.themeMode = settings.themeMode;
+
+    painter.set(
+      mode: settings.themeMode,
+      theme: widget.theme ?? settings.style.theme!
+    );
 
     if (painter.shouldRepaint) {
       painter.paint(_artboard!);
@@ -56,6 +70,11 @@ class _AnalogGaugeState extends State<AnalogGauge> {
   @override
   void initState() {
     super.initState();
+
+    painter.set(
+      theme: widget.theme ?? AnalogGaugeTheme.standard,
+      mode: ThemeMode.light,
+    );
 
     _subscription = widget.stream.listen(
       (d) => setState(

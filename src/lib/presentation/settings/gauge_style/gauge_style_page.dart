@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../application/l10n/generated/l10n.dart';
-import '../../../application/inclination/gauge_palette.dart';
+import '../../../application/gauge/gauge_style.dart';
 import '../../common/app_bar.dart';
 import '../../common/app_settings.dart';
 import 'indicator_preview.dart';

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../app.dart';
 import '../../application/app_settings.dart';
 import '../../application/application.dart';
-import '../../application/inclination/gauge_palette.dart';
+import '../../application/gauge/gauge_style.dart';
 import '../../application/ioc.dart';
 import 'app_settings.dart';
 import 'splash.dart';

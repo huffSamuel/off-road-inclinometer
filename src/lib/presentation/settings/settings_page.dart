@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:off_road_inclinometer/presentation/settings/about_app_dialog.dart';
 import 'package:off_road_inclinometer/presentation/settings/see_source_button.dart';
 
 import '../../application/application.dart';
@@ -21,16 +22,9 @@ class SettingsPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline_rounded),
-            onPressed: () => showAboutDialog(
+            onPressed: () => showDialog(
               context: context,
-              applicationName: Application.title,
-              applicationVersion: Application.version,
-              applicationIcon: Image.asset(
-                'assets/icon/icon.png',
-                width: 64,
-                height: 64,
-              ),
-              children:[ const SeeSourceListTile()]
+              builder: (context) => const AboutAppDialog(),
             ),
           ),
         ],

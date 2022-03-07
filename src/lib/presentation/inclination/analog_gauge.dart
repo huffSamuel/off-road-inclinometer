@@ -5,19 +5,19 @@ import 'package:rive/rive.dart';
 
 import '../../application/application.dart';
 import '../../application/gauge/analog_gauge_painter.dart';
-import '../../application/gauge/analog_gauge_theme.dart';
+import '../../application/gauge/app_theme.dart';
 import '../common/app_settings.dart';
 
 class AnalogGauge extends StatefulWidget {
   final String artboardName;
   final Stream<double> stream;
-  final AnalogGaugeTheme? theme;
+  final GaugeThemeData? gaugeTheme;
 
   const AnalogGauge({
     Key? key,
     required this.artboardName,
     required this.stream,
-    this.theme,
+    this.gaugeTheme,
   }) : super(key: key);
 
   @override
@@ -47,34 +47,27 @@ class _AnalogGaugeState extends State<AnalogGauge> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _updatePainter();
-   
   }
 
   void _updatePainter() {
-     if (_artboard == null) {
+    if (_artboard == null) {
       return;
     }
 
     final settings = AppSettings.of(context);
 
-    painter.set(
-      mode: settings.themeMode,
-      theme: widget.theme ?? settings.style.theme!
+    painter.repaint(
+      _artboard!,
+      (widget.gaugeTheme ?? settings.gaugeThemeData).analog[
+          Theme.of(context).brightness == Brightness.dark
+              ? ThemeMode.dark
+              : ThemeMode.light]!,
     );
-
-    if (painter.shouldRepaint) {
-      painter.paint(_artboard!);
-    }
   }
 
   @override
   void initState() {
     super.initState();
-
-    painter.set(
-      theme: widget.theme ?? AnalogGaugeTheme.standard,
-      mode: ThemeMode.light,
-    );
 
     _subscription = widget.stream.listen(
       (d) => setState(
@@ -89,6 +82,7 @@ class _AnalogGaugeState extends State<AnalogGauge> {
 
     if (controller != null) {
       artboard.addController(controller);
+      _updatePainter();
       _degrees = controller.findInput('deg');
     }
 

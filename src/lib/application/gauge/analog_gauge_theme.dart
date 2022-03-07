@@ -6,6 +6,13 @@ class AnalogGaugeThemeData {
 
   const AnalogGaugeThemeData({required this.scaleColor});
 
+  factory AnalogGaugeThemeData.fromJson(Map<String, dynamic> json) {
+    return AnalogGaugeThemeData(
+        scaleColor: Color(
+      json['scaleColor'],
+    ));
+  }
+
   static const dark = AnalogGaugeThemeData(
     scaleColor: Colors.white,
   );
@@ -23,25 +30,36 @@ class AnalogGaugeTheme extends Equatable {
     return mode == ThemeMode.dark ? dark : light;
   }
 
-  AnalogGaugeTheme(this.name, {this.light, this.dark});
+  const AnalogGaugeTheme(this.name, {this.light, this.dark});
+
+  factory AnalogGaugeTheme.fromJson(Map<String, dynamic> json) {
+    return AnalogGaugeTheme(
+      json['name'],
+      light: json['light'] == null
+          ? null
+          : AnalogGaugeThemeData.fromJson(json['light']),
+      dark: json['dark'] == null
+          ? null
+          : AnalogGaugeThemeData.fromJson(json['dark']),
+    );
+  }
 
   static List<AnalogGaugeTheme> all = [
     standard,
-    redDawn
+    redDawn,
   ];
 
-  static AnalogGaugeTheme standard = AnalogGaugeTheme(
+  static AnalogGaugeTheme standard = const AnalogGaugeTheme(
     'Default Analog',
     light: AnalogGaugeThemeData.light,
     dark: AnalogGaugeThemeData.dark,
   );
 
-  static AnalogGaugeTheme redDawn = AnalogGaugeTheme(
+  static AnalogGaugeTheme redDawn = const AnalogGaugeTheme(
     'Red Dawn',
     light: AnalogGaugeThemeData(scaleColor: Colors.red),
     dark: AnalogGaugeThemeData(scaleColor: Colors.red),
   );
-
   @override
   List<Object?> get props => [name];
 }

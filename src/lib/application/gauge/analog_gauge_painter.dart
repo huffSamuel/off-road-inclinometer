@@ -2,65 +2,66 @@ import 'package:flutter/material.dart';
 import 'package:rive/components.dart';
 import 'package:rive/rive.dart';
 
-import 'analog_gauge_theme.dart';
+import 'app_theme.dart';
 
 class AnalogGaugePainter {
-  AnalogGaugeTheme? _themeData;
-
-  get shouldRepaint => _shouldRepaint;
-
-  bool _shouldRepaint = false;
-  ThemeMode? _themeMode;
-
-  void set({
-    required AnalogGaugeTheme theme,
-    required ThemeMode mode,
-  }) {
-    print('Set ${theme.name}');
-
-    _shouldRepaint = theme != _themeData || mode != _themeMode;
-
-    _themeData = theme;
-    _themeMode = mode;
-  }
-
   final scaleGroupNames = ['External Scale', 'Left Scale ', 'Right Scale'];
 
-  Shape? tryGetChild(Artboard artboard, String childName) {
+  T? tryGetChild<T>(Artboard artboard, String childName) {
     try {
       return artboard
           .component<Node>('Root')
           ?.children
-          .singleWhere((x) => x.name == childName) as Shape?;
+          .singleWhere((x) => x.name == childName) as T?;
     } catch (err) {
       return null;
     }
   }
 
-  Shape? getExternalScale(Artboard artboard) {
-    return tryGetChild(artboard, 'External Scale');
+  List<Shape?> _getExternalScale(Artboard artboard) {
+    return ['External Scale', 'Left Scale ', 'Right Scale']
+        .map((x) => tryGetChild<Shape>(artboard, x))
+        .where((x) => x != null)
+        .toList();
   }
 
-  Shape? getLeftScale(Artboard artboard) {
-    return tryGetChild(artboard, 'Left Scale ');
+  List<Shape?> _getExternalIndicator(Artboard artboard) {
+    return tryGetChild<Node>(artboard, 'External Indicator')
+            ?.children
+            .whereType<Shape>()
+            .toList() ??
+        [];
   }
 
-  Shape? getRightScale(Artboard artboard) {
-    return tryGetChild(artboard, 'Right Scale');
+  List<Shape?> _getInternalIndicator(Artboard artboard) {
+    return tryGetChild<Node>(artboard, 'Internal Indicator')
+            ?.children
+            .whereType<Shape>()
+            .toList() ??
+        [];
   }
 
-  void paint(Artboard artboard) {
-    if (_themeData == null) {
-      return;
+  void repaint(Artboard artboard, AnalogGaugePaint paint) {
+    final internalIndicator = _getInternalIndicator(artboard);
+    final externalScale = _getExternalScale(artboard);
+
+    if (paint.externalScale != null) {
+      for (final s in externalScale) {
+        paintShape(s, paint.externalScale!);
+      }
     }
 
-    print('Paint: ${_themeData?.name}');
+    if (paint.internalIndicator != null) {
+      for (final s in internalIndicator) {
+        paintShape(s, paint.internalIndicator!);
+      }
+    }
 
-    scaleGroupNames
-        .map((x) => tryGetChild(artboard, x))
-        .where((x) => x != null)
-        .forEach(
-            (x) => paintShape(x, _themeData!.data(_themeMode!).scaleColor));
+    if (paint.externalIndicator != null) {
+      for (final s in _getExternalIndicator(artboard)) {
+        paintShape(s, paint.externalIndicator!);
+      }
+    }
   }
 
   void paintNode(

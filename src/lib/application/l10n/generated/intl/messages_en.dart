@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source Code"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
-        "themeMode": m1
+        "themeMode": m1,
+        "themeModeTitle": MessageLookupByLibrary.simpleMessage("Theme Mode")
       };
 }

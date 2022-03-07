@@ -24,35 +24,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appSettings = AppSettings.of(context);
+
     return MaterialApp(
-      themeMode: AppSettings.of(context).themeMode,
-      darkTheme: darkTheme,
-      theme: lightTheme,
+      themeMode: appSettings.themeMode,
+      darkTheme: appSettings.gaugeThemeData.theme[ThemeMode.dark],
+      theme: appSettings.gaugeThemeData.theme[ThemeMode.light],
       title: Application.title,
       localizationsDelegates: localizationsDelegates,
       supportedLocales: S.delegate.supportedLocales,
       home: const SafeArea(child: HomePage()),
       onGenerateRoute: Application.router.generator,
-      debugShowCheckedModeBanner: false
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-ThemeData darkTheme = ThemeData.dark().copyWith(
-  iconTheme: const IconThemeData(
-    color: Colors.white,
-  ),
-  appBarTheme: const AppBarTheme(
-    color: Colors.transparent,
-    shadowColor: Colors.transparent,
-    elevation: 0.0,
-  ),
-);
-ThemeData lightTheme = ThemeData.light().copyWith(
-  iconTheme: const IconThemeData(color: Colors.black),
-  appBarTheme: const AppBarTheme(
-    color: Colors.transparent,
-    shadowColor: Colors.transparent,
-    elevation: 0.0,
-  ),
-);

@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Amber Terminal",
+    "lightColor": 4291135233,
+    "darkColor": 4294946816,
+    "analog": {
+      "light": {
+        "externalIndicator": 4291135233,
+        "internalIndicator": 4291135233,
+        "externalScale": 4291135233
+      },
+      "dark": {
+        "externalIndicator": 4294946816,
+        "internalIndicator": 4294946816,
+        "externalScale": 4294946816
+      }
+    }
+  },
+  {
+    "name": "Green Terminal",
+    "lightColor": 4281597696,
+    "darkColor": 4281597696,
+    "analog": {
+      "light": {
+        "externalIndicator": 4281597696,
+        "internalIndicator": 4281597696,
+        "externalScale": 4281597696
+      },
+      "dark": {
+        "externalIndicator": 4281597696,
+        "internalIndicator": 4281597696,
+        "externalScale": 4281597696
+      }
+    }
+  }
+]

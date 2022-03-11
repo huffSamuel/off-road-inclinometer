@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../../application/l10n/generated/l10n.dart';
-import '../../../application/gauge/app_theme.dart';
-import '../../../application/gauge/gauge_theme_data_repository.dart';
+import '../../../application/theme/merge_theme_data.dart';
+import '../../../application/theme/gauge_theme_data_repository.dart';
 import '../../../application/ioc.dart';
 import '../../common/app_bar.dart';
 import '../../common/app_settings.dart';
 import 'indicator_preview.dart';
 
 class GaugeStylePage extends StatefulWidget {
-  final GaugeThemeData themeData;
+  final MergedThemeData themeData;
   const GaugeStylePage({
     Key? key,
     required this.themeData,
@@ -20,8 +20,8 @@ class GaugeStylePage extends StatefulWidget {
 }
 
 class _GaugeStylePageState extends State<GaugeStylePage> {
-  late GaugeThemeData _themeData;
-  final GaugeThemeDataRepository _themeDataRepo = ioc();
+  late MergedThemeData _themeData;
+  final MergedThemeRepository _themeDataRepo = ioc();
 
   @override
   initState() {
@@ -29,7 +29,7 @@ class _GaugeStylePageState extends State<GaugeStylePage> {
     _themeData = widget.themeData;
   }
 
-  _setStyle(GaugeThemeData? themeData) {
+  _setStyle(MergedThemeData? themeData) {
     if (themeData == null) {
       return;
     }
@@ -44,7 +44,7 @@ class _GaugeStylePageState extends State<GaugeStylePage> {
     final appSettings = AppSettings.of(context);
 
     final themeTiles = _themeDataRepo.getAll().map(
-          (x) => RadioListTile<GaugeThemeData>(
+          (x) => RadioListTile<MergedThemeData>(
             title: Text(x.name),
             groupValue: _themeData,
             value: x,

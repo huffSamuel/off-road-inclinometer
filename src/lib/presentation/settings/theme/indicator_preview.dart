@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../application/gauge/app_theme.dart';
+import '../../../application/theme/merge_theme_data.dart';
 import '../../../application/ioc.dart';
 import '../../inclination/roll_gauge.dart';
 
 class IndicatorPreview extends StatelessWidget {
-  final GaugeThemeData theme;
+  final MergedThemeData theme;
 
   const IndicatorPreview({
     Key? key,

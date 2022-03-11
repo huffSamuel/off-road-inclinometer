@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../app.dart';
 import '../../application/app_settings.dart';
 import '../../application/application.dart';
-import '../../application/gauge/app_theme.dart';
-import '../../application/gauge/gauge_theme_data_repository.dart';
+import '../../application/theme/merge_theme_data.dart';
+import '../../application/theme/gauge_theme_data_repository.dart';
 import '../../application/ioc.dart';
 import 'app_settings.dart';
 import 'splash.dart';
@@ -22,7 +22,7 @@ class _AppHostState extends State<AppHost> {
   bool _loaded = false;
   late SharedPreferences _prefs;
   late Settings settings;
-  late GaugeThemeDataRepository _rep;
+  late MergedThemeRepository _rep;
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _AppHostState extends State<AppHost> {
       String? stylePreference = preferences.getString('style');
 
       if(!_rep.has(stylePreference)) {
-        stylePreference = GaugeThemeData.fallback().name;
+        stylePreference = MergedThemeData.fallback().name;
         preferences.setString('style', stylePreference);
       }
 

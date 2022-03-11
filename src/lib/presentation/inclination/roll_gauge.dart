@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../application/gauge/app_theme.dart';
+import '../../application/theme/merge_theme_data.dart';
 import '../../application/inclination/inclinometer.dart';
 import '../common/app_settings.dart';
 import 'analog_gauge.dart';
 import 'digital_gauge.dart';
 
 class RollGauge extends StatelessWidget {
-  final GaugeThemeData? theme;
+  final MergedThemeData? theme;
   final Inclinometer inclinometer;
 
   const RollGauge({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/components.dart';
 import 'package:rive/rive.dart';
 
-import 'app_theme.dart';
+import '../theme/analog_gauge_theme.dart';
 
 class AnalogGaugePainter {
   final scaleGroupNames = ['External Scale', 'Left Scale ', 'Right Scale'];

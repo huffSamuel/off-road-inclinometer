@@ -1,35 +1,74 @@
 [
   {
     "name": "Amber Terminal",
-    "lightColor": 4291135233,
-    "darkColor": 4294946816,
-    "analog": {
+    "theme": {
       "light": {
-        "externalIndicator": 4291135233,
-        "internalIndicator": 4291135233,
-        "externalScale": 4291135233
+        "primary": "#C58701",
+        "background": "#EEEEEE"
       },
       "dark": {
-        "externalIndicator": 4294946816,
-        "internalIndicator": 4294946816,
-        "externalScale": 4294946816
+        "primary": "#FFB000"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#C58701",
+        "internalIndicator": "#C58701",
+        "externalScale": "#C58701"
+      },
+      "dark": {
+        "externalIndicator": "#FFB000",
+        "internalIndicator": "#FFB000",
+        "externalScale": "#FFB000"
       }
     }
   },
   {
     "name": "Green Terminal",
-    "lightColor": 4281597696,
-    "darkColor": 4281597696,
-    "analog": {
+    "theme": {
       "light": {
-        "externalIndicator": 4281597696,
-        "internalIndicator": 4281597696,
-        "externalScale": 4281597696
+        "primary": "#63b81a",
+        "background": "EEEEEE"
       },
       "dark": {
-        "externalIndicator": 4281597696,
-        "internalIndicator": 4281597696,
-        "externalScale": 4281597696
+        "primary":"#33FF00"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#63b81a",
+        "internalIndicator": "#63b81a",
+        "externalScale": "#63b81a"
+      },
+      "dark": {
+        "externalIndicator": "#33FF00",
+        "internalIndicator": "#33FF00",
+        "externalScale": "#33FF00"
+      }
+    }
+  },
+  {
+    "name": "Red Dawn",
+    "theme": {
+      "light": {
+        "primary": "#e00700",
+        "background": "#f2e5d7"
+      },
+      "dark": {
+        "primary":"#ff1d15",
+        "background": "#262322"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#e00700",
+        "internalIndicator": "#e00700",
+        "externalScale": "#e00700"
+      },
+      "dark": {
+        "externalIndicator": "#ff1d15",
+        "internalIndicator": "#ff1d15",
+        "externalScale": "#ff1d15"
       }
     }
   }

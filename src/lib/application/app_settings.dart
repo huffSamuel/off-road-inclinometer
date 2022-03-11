@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import 'gauge/app_theme.dart';
+import 'theme/merge_theme_data.dart';
 
 class Settings extends Equatable {
   final ThemeMode themeMode;
   final String style;
   final bool digital;
-  final GaugeThemeData gaugeThemeData;
+  final MergedThemeData gaugeThemeData;
 
   const Settings({
     required this.themeMode,
@@ -19,9 +19,9 @@ class Settings extends Equatable {
   factory Settings.initial() {
     return Settings(
       themeMode: ThemeMode.system,
-      style: GaugeThemeData.fallback().name,
+      style: MergedThemeData.fallback().name,
       digital: false,
-      gaugeThemeData: GaugeThemeData.fallback(),
+      gaugeThemeData: MergedThemeData.fallback(),
     );
   }
 
@@ -29,7 +29,7 @@ class Settings extends Equatable {
     ThemeMode? themeMode,
     String? style,
     bool? digital,
-    GaugeThemeData? gaugeThemeData,
+    MergedThemeData? gaugeThemeData,
   }) {
     return Settings(
       themeMode: themeMode ?? this.themeMode,

@@ -5,13 +5,13 @@ import 'package:rive/rive.dart';
 
 import '../../application/application.dart';
 import '../../application/gauge/analog_gauge_painter.dart';
-import '../../application/gauge/app_theme.dart';
+import '../../application/theme/merge_theme_data.dart';
 import '../common/app_settings.dart';
 
 class AnalogGauge extends StatefulWidget {
   final String artboardName;
   final Stream<double> stream;
-  final GaugeThemeData? gaugeTheme;
+  final MergedThemeData? gaugeTheme;
 
   const AnalogGauge({
     Key? key,

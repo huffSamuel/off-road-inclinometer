@@ -168,6 +168,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Theme Mode`
+  String get themeModeTitle {
+    return Intl.message(
+      'Theme Mode',
+      name: 'themeModeTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

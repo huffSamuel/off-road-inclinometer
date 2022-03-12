@@ -9,5 +9,6 @@
     "relativeInclination": "Relative Inclination",
     "absoluteInclination": "Absolute Inclination",
     "theme": "Theme",
-    "sourceCode": "Source Code"
+    "sourceCode": "Source Code",
+    "themeModeTitle": "Theme Mode"
 }

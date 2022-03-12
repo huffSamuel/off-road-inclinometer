@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../app.dart';
 import '../../application/app_settings.dart';
 import '../../application/application.dart';
-import '../../application/gauge/gauge_style.dart';
+import '../../application/theme/merge_theme_data.dart';
+import '../../application/theme/gauge_theme_data_repository.dart';
 import '../../application/ioc.dart';
 import 'app_settings.dart';
 import 'splash.dart';
@@ -21,16 +22,20 @@ class _AppHostState extends State<AppHost> {
   bool _loaded = false;
   late SharedPreferences _prefs;
   late Settings settings;
+  late MergedThemeRepository _rep;
 
   @override
   void initState() {
     super.initState();
 
+    configureDependencies();
+    _rep = ioc();
+
     Future.wait([
       SharedPreferences.getInstance(),
       rootBundle.load('assets/gauge.riv'),
+      _rep.init(),
     ]).then((val) {
-      configureDependencies();
 
       final preferences = val[0] as SharedPreferences;
       final gaugeAsset = val[1] as ByteData;
@@ -39,16 +44,22 @@ class _AppHostState extends State<AppHost> {
       SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
       final themeModeName = preferences.getString('themeMode');
-      final styleName = preferences.getString('style');
+      String? stylePreference = preferences.getString('style');
+
+      if(!_rep.has(stylePreference)) {
+        stylePreference = MergedThemeData.fallback().name;
+        preferences.setString('style', stylePreference);
+      }
+
       final themeMode = themeModeName != null
           ? ThemeMode.values.byName(themeModeName)
           : ThemeMode.system;
-      final style = GaugeStyle.all.singleWhere((x) => x.name == styleName,
-          orElse: () => GaugeStyle.defaultAnalog);
 
       settings = Settings(
         themeMode: themeMode,
-        style: style,
+        style: stylePreference!,
+        digital: false,
+        gaugeThemeData: _rep.get(stylePreference),
       );
 
       setState(() {
@@ -64,7 +75,7 @@ class _AppHostState extends State<AppHost> {
         _prefs.setString('themeMode', newSettings.themeMode.name);
       }
       if (newSettings.style != settings.style) {
-        _prefs.setString('style', newSettings.style.name);
+        _prefs.setString('style', newSettings.style);
       }
 
       settings = newSettings;

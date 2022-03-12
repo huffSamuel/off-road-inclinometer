@@ -25,6 +25,7 @@ dependencies:
   url_launcher: ^6.0.20
   shimmer: ^2.0.0
   package_info_plus: ^1.4.0
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,7 @@ flutter:
   assets:
     - assets/gauge.riv
     - assets/icon/icon.png
+    - assets/themes.json
 
 flutter_intl:
   enabled: true

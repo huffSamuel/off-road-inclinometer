@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Amber Terminal",
+    "theme": {
+      "light": {
+        "primary": "#C58701",
+        "background": "#EEEEEE"
+      },
+      "dark": {
+        "primary": "#FFB000"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#C58701",
+        "internalIndicator": "#C58701",
+        "externalScale": "#C58701"
+      },
+      "dark": {
+        "externalIndicator": "#FFB000",
+        "internalIndicator": "#FFB000",
+        "externalScale": "#FFB000"
+      }
+    }
+  },
+  {
+    "name": "Green Terminal",
+    "theme": {
+      "light": {
+        "primary": "#63b81a",
+        "background": "EEEEEE"
+      },
+      "dark": {
+        "primary":"#33FF00"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#63b81a",
+        "internalIndicator": "#63b81a",
+        "externalScale": "#63b81a"
+      },
+      "dark": {
+        "externalIndicator": "#33FF00",
+        "internalIndicator": "#33FF00",
+        "externalScale": "#33FF00"
+      }
+    }
+  },
+  {
+    "name": "Red Dawn",
+    "theme": {
+      "light": {
+        "primary": "#e00700",
+        "background": "#f2e5d7"
+      },
+      "dark": {
+        "primary":"#ff1d15",
+        "background": "#262322"
+      }
+    },
+    "analog": {
+      "light": {
+        "externalIndicator": "#e00700",
+        "internalIndicator": "#e00700",
+        "externalScale": "#e00700"
+      },
+      "dark": {
+        "externalIndicator": "#ff1d15",
+        "internalIndicator": "#ff1d15",
+        "externalScale": "#ff1d15"
+      }
+    }
+  }
+]

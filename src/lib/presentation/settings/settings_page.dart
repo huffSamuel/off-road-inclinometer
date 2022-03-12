@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:off_road_inclinometer/presentation/settings/about_app_dialog.dart';
-import 'package:off_road_inclinometer/presentation/settings/see_source_button.dart';
 
-import '../../application/application.dart';
 import '../../application/l10n/generated/l10n.dart';
 import '../common/app_bar.dart';
-import 'gauge_style/gauge_style_list_tile.dart';
+import 'about_app_dialog.dart';
+import 'digital_switch/digital_switch_tile.dart';
+import 'theme_mode/theme_mode_list_tile.dart';
 import 'theme/theme_list_tile.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -31,8 +30,9 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: const [
+          DigitalSwitchTile(),
           ThemeListTile(),
-          GaugeStyleListTile(),
+          DarkModeTile(),
         ],
       ),
     );

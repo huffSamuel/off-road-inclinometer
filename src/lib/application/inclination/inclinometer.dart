@@ -71,8 +71,8 @@ class Inclinometer {
     final _pitch = nextPitch - (_relativeInclination ? _relativePitchZero! : 0);
     final _roll = nextRoll - (_relativeInclination ? _relativeRollZero! : 0);
 
-    _pitchAverage.add(_pitch);
-    _rollAverage.add(_roll);
+    _pitchAverage.push(_pitch);
+    _rollAverage.push(_roll);
 
     pitch.add(_pitchAverage.value
     );

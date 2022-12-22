@@ -8,7 +8,7 @@ class SimpleMovingAverage {
       _values.values.reduce((value, element) => value + element) /
       _values.length;
 
-  void add(num value) {
+  void push(num value) {
     final now = DateTime.now();
 
     _values.removeWhere((key, value) => now.difference(key) > period);

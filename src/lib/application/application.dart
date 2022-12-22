@@ -7,7 +7,5 @@ class Application {
   static const String url = 'https://github.com/huffSamuel/off-road-inclinometer';
   static late FluroRouter router;
   static late ByteData gauge;
-
-  static const int bufferSize = 5;
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../application/l10n/generated/l10n.dart';
+import '../../../application/app_settings.dart';
 import '../../../application/theme/merge_theme_data.dart';
 import '../../../application/theme/gauge_theme_data_repository.dart';
 import '../../../application/ioc.dart';
@@ -39,6 +40,15 @@ class _GaugeStylePageState extends State<GaugeStylePage> {
     });
   }
 
+  ThemeMode _theme(Settings appSettings, BuildContext context) {
+    if (appSettings.themeMode == ThemeMode.system) {
+      return MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? ThemeMode.dark
+          : ThemeMode.light;
+    }
+    return appSettings.themeMode;
+  }
+
   @override
   Widget build(BuildContext context) {
     final appSettings = AppSettings.of(context);
@@ -52,14 +62,11 @@ class _GaugeStylePageState extends State<GaugeStylePage> {
           ),
         );
 
-    final scrollable = Expanded(
-      child: ListView(
-        children: List.from(themeTiles)
-      )
-    );
+    final scrollable =
+        Expanded(child: ListView(children: List.from(themeTiles)));
 
     return Theme(
-      data: _themeData.theme[appSettings.themeMode]!,
+      data: _themeData.theme[_theme(appSettings, context)]!,
       child: WillPopScope(
         onWillPop: () {
           AppSettings.update(

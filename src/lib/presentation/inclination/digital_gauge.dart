@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:rxdart/transformers.dart';
 
 class DigitalGauge extends StatefulWidget {
   final Widget title;
@@ -17,22 +18,34 @@ class DigitalGauge extends StatefulWidget {
 }
 
 class _DigitalGaugeState extends State<DigitalGauge> {
-  int _degrees = 0;
+  double _degrees = 0;
   StreamSubscription? _subscription;
 
   @override
   void initState() {
     super.initState();
 
-    _subscription = widget.stream.listen(
-      (d) => setState(() => _degrees = d.toInt()),
-    );
+    _subscription =
+        widget.stream.throttleTime(Duration(milliseconds: 250)).listen(
+              (d) => setState(() => _degrees = d.abs()),
+            );
   }
 
   @override
   void dispose() {
     super.dispose();
     _subscription?.cancel();
+  }
+
+  String _degreesText() {
+    if (_degrees.abs() < 10) {
+      print('fixed 1');
+      return _degrees.toStringAsFixed(1);
+    }
+
+    print('fixed 0');
+
+    return _degrees.toStringAsFixed(0);
   }
 
   @override
@@ -42,7 +55,7 @@ class _DigitalGaugeState extends State<DigitalGauge> {
     final width = mq.orientation == Orientation.landscape
         ? (mq.size.width / 2)
         : (mq.size.height / 2) - 14;
-    
+
     return SizedBox(
       height: width,
       width: width,
@@ -52,7 +65,7 @@ class _DigitalGaugeState extends State<DigitalGauge> {
             child: FittedBox(
               fit: BoxFit.contain,
               child: Text(
-                _degrees.toStringAsFixed(0),
+                _degreesText(),
               ),
             ),
           ),

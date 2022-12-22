@@ -4,19 +4,22 @@ import 'dart:math' as math;
 import 'package:flutter_sensors/flutter_sensors.dart';
 import 'package:injectable/injectable.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
-import 'package:off_road_inclinometer/application/application.dart';
 
-import '../../domain/buffer.dart';
 import '../../domain/vector.dart';
+import '../core/simple_moving_average.dart';
 
 const _radToDeg = 57.3;
 
+const _averageDuration = Duration(milliseconds: 375);
+
 @Singleton()
 class Inclinometer {
+ 
+  final _pitchAverage = SimpleMovingAverage(_averageDuration);
+  final _rollAverage = SimpleMovingAverage(_averageDuration);
+
   final _communicator = NativeDeviceOrientationCommunicator();
   final _sensorManager = SensorManager();
-  final _pitchBuffer = Buffer(Application.bufferSize);
-  final _rollBuffer = Buffer(Application.bufferSize);
 
   bool _relativeInclination = false;
 
@@ -65,11 +68,15 @@ class Inclinometer {
       _relativeRollZero = nextRoll;
     }
 
-    _pitchBuffer.add(nextPitch - (_relativeInclination ? _relativePitchZero! : 0));
-    _rollBuffer.add(nextRoll - (_relativeInclination ? _relativeRollZero! : 0));
+    final _pitch = nextPitch - (_relativeInclination ? _relativePitchZero! : 0);
+    final _roll = nextRoll - (_relativeInclination ? _relativeRollZero! : 0);
 
-    pitch.add(_pitchBuffer.average);
-    roll.add(_rollBuffer.average);
+    _pitchAverage.add(_pitch);
+    _rollAverage.add(_roll);
+
+    pitch.add(_pitchAverage.value
+    );
+    roll.add(_rollAverage.value);
   }
 
   setZero() {

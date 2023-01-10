@@ -39,11 +39,8 @@ class _DigitalGaugeState extends State<DigitalGauge> {
 
   String _degreesText() {
     if (_degrees.abs() < 10) {
-      print('fixed 1');
       return _degrees.toStringAsFixed(1);
     }
-
-    print('fixed 0');
 
     return _degrees.toStringAsFixed(0);
   }

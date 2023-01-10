@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rxdart/transformers.dart';
 
+const digitalThrottle = Duration(milliseconds: 250);
+
 class DigitalGauge extends StatefulWidget {
   final Widget title;
   final Stream<double> stream;
@@ -25,10 +27,9 @@ class _DigitalGaugeState extends State<DigitalGauge> {
   void initState() {
     super.initState();
 
-    _subscription =
-        widget.stream.throttleTime(Duration(milliseconds: 250)).listen(
-              (d) => setState(() => _degrees = d.abs()),
-            );
+    _subscription = widget.stream.throttleTime(digitalThrottle).listen(
+          (d) => setState(() => _degrees = d.abs()),
+        );
   }
 
   @override

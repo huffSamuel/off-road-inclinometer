@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "absoluteInclination":
             MessageLookupByLibrary.simpleMessage("Absolute Inclination"),
+        "digitalGauge": MessageLookupByLibrary.simpleMessage("Digital Gauge"),
         "gaugeStyle": m0,
         "gaugeStyleTitle": MessageLookupByLibrary.simpleMessage("Gauge Style"),
         "lockOrientation":

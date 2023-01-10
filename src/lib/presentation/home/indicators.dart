@@ -34,7 +34,7 @@ class Indicators extends StatelessWidget {
           return Row(
             children: [
               children[0],
-              SizedBox(width: 60),
+              const SizedBox(width: 60),
               children[1],
             ],
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

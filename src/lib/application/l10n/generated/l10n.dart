@@ -178,6 +178,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Digital Gauge`
+  String get digitalGauge {
+    return Intl.message(
+      'Digital Gauge',
+      name: 'digitalGauge',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

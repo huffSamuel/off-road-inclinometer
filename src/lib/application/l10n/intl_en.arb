@@ -10,5 +10,6 @@
     "absoluteInclination": "Absolute Inclination",
     "theme": "Theme",
     "sourceCode": "Source Code",
-    "themeModeTitle": "Theme Mode"
+    "themeModeTitle": "Theme Mode",
+    "digitalGauge": "Digital Gauge"
 }

@@ -13,8 +13,8 @@ class SeeSourceListTile extends StatelessWidget {
       leading: const Icon(Icons.code),
       title: Text(S.of(context).sourceCode),
       onTap: () async {
-        if (await canLaunch(Application.url)) {
-          launch(Application.url);
+        if (await canLaunchUrl(Application.url)) {
+          launchUrl(Application.url);
         }
       },
     );

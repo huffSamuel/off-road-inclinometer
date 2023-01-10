@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../application/l10n/generated/l10n.dart';
 import '../../common/app_settings.dart';
 
 class DigitalSwitchTile extends StatefulWidget {
@@ -35,7 +36,7 @@ class _DigitalSwitchTileState extends State<DigitalSwitchTile> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-      title: Text('Digital Gauge'),
+      title: Text(S.of(context).digitalGauge),
       value: _value,
       onChanged: _update,
     );

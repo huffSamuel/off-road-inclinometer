@@ -32,7 +32,11 @@ class Indicators extends StatelessWidget {
 
         if (isLandscape(orientation)) {
           return Row(
-            children: children,
+            children: [
+              children[0],
+              const SizedBox(width: 60),
+              children[1],
+            ],
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
           );
